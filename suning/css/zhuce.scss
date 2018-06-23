@@ -1,0 +1,95 @@
+body{
+    background: #f8f8f8;
+}
+$zcwidth:990px;
+.header_zhuce{
+    width: $zcwidth;
+    height: 88px;
+    margin: 0 auto;
+    a:nth-of-type(1){
+        display: block;
+        height: 100%;
+        width: 190px;
+        margin-right: 24px;
+        float: left;
+        background: url(../imgs/sprite.png) no-repeat;
+    }
+    a:nth-of-type(2){
+        float: right;
+        margin-top: 55px;
+        &:hover{
+            color:#f66;
+        }
+    }
+    h2{
+        float: left;
+        height: 100%;
+        width: 72px;
+        line-height: 88px;
+        font-size: 18px;
+    }
+}
+.main_zhuce{
+    width: $zcwidth;
+    margin: 0 auto;
+    border: 1px solid #ddd;
+    border-top:3px solid #f90;
+    background: #fff;
+    padding: 63px 0;
+    line-height: 1.5;
+}
+#zhucefm{
+    .fm_inline{
+        width: 380px;
+        margin: 0 auto;
+        .fm_header{
+            width: 100%;
+            font-size: 14px;
+            line-height: 17px;
+            margin-bottom: 15px;
+            padding-left: 4px;
+            i{
+                display: inline-block;
+                width: 19px;
+                height: 17px;
+                margin-right: 6px;
+                background: url(../imgs/sprite.png) no-repeat -75px -93px;
+            }
+            em{
+                color: #f40;
+                font-style: normal;
+            }
+        }
+        .zcmessage{
+            width: 378px;
+            height: 38px;
+            border: 1px solid #ccc;
+            line-height: 38px;
+            label{
+                float: left;
+                width: 76px;
+                padding-left: 12px;
+            }
+            input{
+               width: 290px;
+               height: 38px;
+                float: left;
+                border: none;
+            }
+        }
+        .errorzc{
+            width: 380px;
+            height: 24px;
+        }
+    }
+}
+#tijao{
+    display: block;
+    width: 100%;
+    line-height: 40px;
+    background: #f60;
+    border-radius: 4px;
+    text-align: center;
+    color: #fff;
+    font-size: 20px;
+}

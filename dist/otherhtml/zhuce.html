@@ -4,8 +4,40 @@
 		<meta charset="UTF-8">
 		<title>注册</title>
 		<link rel="stylesheet" type="text/css" href="../css/iconfont.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/base.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/zhuce.css"/>
+		<script src="../js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 	<body>
-		<i class="iconfont icon-zixun1"></i>
+		<!--<i class="iconfont icon-zixun1"></i>-->
+		<div class="header_zhuce">
+			<a href="../index.html">
+			</a>
+			<h2>欢迎注册</h2>
+			<a href="#">有账号了？请登录></a>
+		</div>
+		<div class="main_zhuce">
+			<form id="zhucefm" action="">
+				<div class="fm_inline">
+					<div class="fm_header">
+						<i></i>
+						注册领<em>199</em>元大礼包
+					</div>
+					<div id="zcname" class="zcmessage">
+						<label for="username">用户名</label>
+						<input type="text" name="username" id="username" placeholder="请输入用户名" />
+					</div>
+					<div class="errorzc" id="errorname"></div>
+					<div id="zcpassword" class="zcmessage">
+						<label for="password">密&nbsp;&nbsp;&nbsp;码</label>
+						<input type="password" name="password" id="password" placeholder="请输入密码" />
+					</div>
+					<div class="errorzc" id="errorpassword"></div>
+					<a href="#" id="tijao">提交注册</a>
+				</div>
+			</form>
+		</div>
+		<div id="wrap_foot"></div>
 	</body>
+	<script src="../js/snjs.min.js" type="text/javascript" charset="utf-8"></script>
 </html>
