@@ -7,7 +7,6 @@ $zcwidth:990px;
     height: 88px;
     margin: 0 auto;
     a:nth-of-type(1){
-        display: block;
         height: 100%;
         width: 190px;
         margin-right: 24px;
@@ -27,6 +26,15 @@ $zcwidth:990px;
         width: 72px;
         line-height: 88px;
         font-size: 18px;
+    }
+    div{
+        float: left;
+        background: #fefff1;
+        border: 1px solid #fecd66;
+        line-height: 16px;
+        margin-right: -100px;
+        padding: 4px 6px;
+        margin-top: 32px;
     }
 }
 .main_zhuce{
@@ -92,4 +100,160 @@ $zcwidth:990px;
     text-align: center;
     color: #fff;
     font-size: 20px;
+}
+.main_denglu{
+    height: 570px;
+    min-width: 990px;
+    margin: 0 auto;
+    background: url(../imgs/denglubg.jpg) no-repeat center;
+    .delu_nei{
+        width: 990px;
+        height: 100%;
+        margin: 0 auto;
+        >a{
+            float: left;
+            width: 570px;
+            height: 100%;
+        }
+        .main_right{
+            float: right;
+            width: 360px;
+            margin-top: 50px;
+            box-shadow: 0 0 2px #ececec;
+            background: #fff;
+           
+            .login_top{
+                height: 50px;
+                line-height: 20px;
+                border-bottom: 1px solid #eee;
+                font-size: 16px;
+                a{
+                    float: left;
+                    width: 50%;
+                    height: 100%;
+                    padding-top: 15px;
+                    box-sizing: border-box;
+                    text-align: center;
+                    position: relative;
+                    &:hover{
+                        color:#f60 ;
+                    }
+                  span{
+                      display: block;
+                      border-right: 1px solid #eee;
+                  }
+                  i{
+                      display: none;
+                      width: 70px;
+                      height: 4px;
+                      background: #f60;
+                      position: absolute;
+                      left: 50%;
+                      margin-left: -35px;
+                      bottom: -1px;
+                  }
+                }
+                .checkon{
+                    color: #f60;
+                    i{
+                        display: block;
+                    }
+                }
+            }
+            .freezc{
+                margin: 12px 0 35px;
+                text-align: center;
+                a{
+                    &:hover{
+                        color: #f60;
+                        text-decoration: underline;
+                    }
+                }
+            }
+            .otherdl{
+                width: 310px;
+                margin: 0 auto 15px;
+                padding: 19px 0 17px;
+                border-top: 1px solid #DDDDDD;
+                position: relative;
+                text-align: center;
+                h3{
+                    position: absolute;
+                    width: 124px;
+                    top: -9px;
+                    left: 50%;
+                    margin-left: -64px;
+                    font-size: 14px;
+                    color: #999999;
+                    background: #fff;
+                }
+                a{
+                    float: left;
+                    height: 16px;
+                    padding: 0 7px;
+                    border-right: 1px solid #dedcd5;
+                    line-height: 16px;
+                    &:hover{
+                        text-decoration: underline;
+                        color: #f60;
+                    }
+                    i{
+                        float: left;
+                        width: 16px;
+                        height: 16px;
+                        margin-right: 5px;
+                        background-image: url(../imgs/sprite1.png);
+                        background-repeat: no-repeat;
+                    }
+                }
+                a:nth-of-type(1){
+                    i{
+                    background-position:-90px -27px;
+                    }
+                }
+                 a:nth-of-type(2){
+                    i{
+                    background-position:-161px -108px;
+                    }
+                }
+                 a:nth-of-type(3){
+                    i{
+                    background-position:-119px -108px;
+                    }
+                }
+            }
+        }
+    }
+}
+.wx_dl{
+    display: none;
+    padding-top: 30px;
+    text-align: center;
+   img{
+       width: 141px;
+       height: 141px;
+       margin: 0 auto 30px;
+   }
+   p{
+       margin-bottom: 7px;
+       text-align: center;
+       i{
+          display: inline-block; 
+          width: 16px;
+          height: 16px;
+          margin-right: 6px;
+       }
+       a{
+           display: inline;
+           color: #FF6600;
+           
+       }
+   }
+}
+.zh_dl{
+    display: block;
+    margin-top: 30px;
+    padding:0 24px;
+    text-align: center;
+    
 }
