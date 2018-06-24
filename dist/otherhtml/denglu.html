@@ -29,15 +29,22 @@
 					</div>
 					<div class="zh_dl">
 						<div id="dlname" class="zcmessage">
-							<label for="username">用户名</label>
-							<input type="text" name="username" id="userdl" placeholder="请输入用户名" />
+							<label for="username" class="nameicon"></label>
+							<input autocomplete="off" type="text" name="username" id="userdl" placeholder="用户名/QQ/微信/易付宝" />
 						</div>
 						<div class="errorzc" id="dlerrorname"></div>
 						<div id="dlpassword" class="zcmessage">
-							<label for="password">密&nbsp;&nbsp;&nbsp;码</label>
-							<input type="password" name="password" id="passworddl" placeholder="请输入密码" />
+							<label for="password" class="lockicon"></label>
+							<input autocomplete="off" type="password" name="password" id="passworddl" placeholder="密码" />
 						</div>
 						<div class="errorzc" id="dlerrorpassword"></div>
+						
+						<div id="dl_wang">
+							<a href="#"><i></i>短信验证登录</a>
+							<a href="#"><i></i>账号密码登录</a>
+							<a href="#">忘记密码</a>
+						</div>
+						<a href="#" id="dlbtn">登录</a>
 					</div>
 					<div class="freezc">
 						<a href="zhuce.html">免费注册有惊喜</a>

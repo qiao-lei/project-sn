@@ -82,7 +82,6 @@ $zcwidth:990px;
                width: 290px;
                height: 38px;
                 float: left;
-                border: none;
             }
         }
         .errorzc{
@@ -226,13 +225,13 @@ $zcwidth:990px;
     }
 }
 .wx_dl{
-    display: none;
+    display:block;
     padding-top: 30px;
     text-align: center;
    img{
        width: 141px;
        height: 141px;
-       margin: 0 auto 30px;
+       margin: 40px auto 30px;
    }
    p{
        margin-bottom: 7px;
@@ -251,9 +250,103 @@ $zcwidth:990px;
    }
 }
 .zh_dl{
-    display: block;
-    margin-top: 30px;
+    display: none;
+    margin-top: 40px;
     padding:0 24px;
     text-align: center;
+     height: 223px;
+    .zcmessage{
+        width: 100%;
+        border: 1px solid #ddd;
+        overflow: hidden;
+        color: #999;
+        label{
+            float: left;
+            width: 36px;
+            height: 36px;
+            background-image:url(../imgs/sprite1.png);
+            background-repeat: no-repeat;
+        }
+        input{
+            float: left;
+            height: 36px;
+        }
+        a{
+            float: right;
+            width: 101px;
+            height: 100%;
+            box-sizing: border-box;
+            line-height: 36px;
+            text-align: center;
+            background: #eee;
+            font-size: 14px;
+            text-decoration: none;
+        }
+        .nameicon{
+               background-position: -123px -67px;//-82 -67;
+        }
+        
+        .lockicon{
+             background-position: 0 -108px;//-41 -67;
+        }   
+    }
+    .errorzc{
+        width: 100%;
+        height: 24px;
+    }
+}
+#dl_wang{
+    height: 35px;
+    line-height: 35px;
+    padding-top: 10px;
     
+}
+#dl_wang>a:nth-of-type(1){
+    float: left;
+    i{
+        display: inline-block;
+        width: 13px;
+        height: 16px;
+        margin-right: 4px;
+        vertical-align: -3px;
+        background: url(../imgs/sprite1.png) no-repeat 0 -149px;
+    }
+    &:hover{
+        color: #f60;
+    }
+}
+#dl_wang>a:nth-of-type(2){
+    display: none;
+    float: left;
+    i{
+        display: inline-block;
+        width: 13px;
+        height: 16px;
+        margin-right: 4px;
+        vertical-align: -3px;
+        background: url(../imgs/sprite1.png) no-repeat -18px -149px;
+    }
+    &:hover{
+        color: #f60;
+    }
+}
+#dl_wang>a:nth-of-type(3){
+    float: right;
+    &:hover{
+         color: #f60;
+         text-decoration: underline;
+    }
+}
+#dlbtn{
+    display: block;
+    width: 310px;
+    height: 40px;
+    line-height: 40px;
+    margin: 0 auto;
+    background: #FF6600;
+    border-radius: 3px;
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+    color: #FFFFFF;
 }
