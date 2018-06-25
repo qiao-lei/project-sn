@@ -2,10 +2,10 @@
 //	console.log("aaaa");
 })();
 $(function(){
-	$(".top a").mouseenter(function(){
-		$(this).next().show();
+	$(".hoverul").mouseover(function(){
+		$(this).children().eq(1).show();
 	});
-	$(".top a").mouseleave(function(){
-		$(this).next().hide();
+	$(".hoverul").mouseout(function(){
+		$(this).children().eq(1).hide();
 	});
 })

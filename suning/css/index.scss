@@ -12,10 +12,10 @@
        line-height: 35px;
        .top_left,.top_right{
            float: left;
-           div{
+           >div{
                float: left;
                position: relative;
-               a{
+               >a{
                   float: left;
                   overflow: hidden;
                   height: 35px;
@@ -81,13 +81,19 @@
     }
 }
 //头部的下拉菜单
+@mixin listposition{
+     position: absolute;
+     top: 35px;
+     border: 1px solid #ddd;
+     z-index: 888;
+     background: #fff;
+}
 #top_web_list{
-    position: absolute;
-    z-index: 77;
+   @include listposition;
     width: 988px;
-    top: 35px;
+  
     padding: 20px 0;
-    border: 1px solid #ddd;
+    
     left: 0;
     display: none;
     li{
@@ -108,16 +114,186 @@
             width: 78px;
             line-height: 25px;
             margin: 0;padding: 0;
+            &:hover{
+             color: #f60;
+             }
         }
        
     }
 }
-#top_hezuo,#top_kehu{
+#top_hezuo,#top_kehu,#top_my,#top_my_yigou{
     width: 162px;
     padding: 5px 0;
-    position: absolute;
-    top: 35px;
-    border: 1px solid #ddd;
+    @include listposition;
     display: none;
+   a{
+        float: left;
+        height: 25px;
+        width: 78px;
+        text-align: center;
+        line-height: 25px;
+        margin: 0;padding: 0;
+        &:hover{
+            color: #f60;
+        }
+     } 
 }
 #top_kehu{right: 0;}
+#top_my{width: 85px;}
+#top_my_yigou{
+    .tmy_shizi{
+        width: 142px;
+        height: 56px;
+        margin: 0 auto;
+        a{
+            float: left;
+            width: 54px;
+            height: 54px;
+            img{
+                display: block;
+                width: 54px;
+                height: 54px;
+            }
+        }
+        .shizi_right{
+            float: left;
+            width: 86px;
+            height: 56px;
+            a{
+                height: 28px;
+                display: block;
+                line-height: 28px;
+                width: 64px;
+                padding: 0;
+                margin-left: 20px;
+                &:last-of-type{
+                    height: 22px;
+                    color: #fff;
+                    line-height: 22px;
+                    background: #f60;
+                    border-radius:4px;
+                }
+            }
+        }
+    }
+}
+#top_phone{
+    width: 540px;
+    right: 0;
+    height: 220px;
+    overflow: hidden;
+    @include listposition;
+    background: #fff;
+    display: none;
+    >li{
+        float: left;
+        width: 180px;
+        margin: 17px 0 0;
+        >img{
+            display: block;
+            width: 147px;
+            height: 147px;
+            margin: 0 auto 10px;
+            
+        }
+        >p{
+          width: 180px;
+          height: 14px;
+          line-height: 14px;
+          text-align: center;
+          color: #666;  
+        }
+    }
+}
+#top_shop{
+    width: 280px;
+    height: 400px;
+    background: #fff;
+    @include listposition;
+    left: 0;
+    display: none;
+}
+//头部搜索logo部分
+@mixin soso{
+    position: absolute;
+    z-index: 666;
+}
+.sousuo_wrap{
+    width: 100%;
+    min-width: 990px;
+    .sousuo{
+        @include conwidth;
+        height: 110px;
+        position: relative;
+        z-index: 1;
+        .index_logo{
+            @include soso;
+            top: 0;
+            left: 0;
+            >a{
+                >img{
+                    width: 190px;
+                    height: 90px;
+                }
+            }
+        }
+        .sousuo_con{
+            @include soso;
+            height: 100px;
+            width: 600px;
+            left: 300px;
+            top: 0;
+            .sousuo_nei{
+                width: 540px;
+                margin-top: 30px;
+                float: right;
+                position: relative;
+                >form{
+                    >div{
+                        width: 390px;
+                        float: left;
+                        background: #FFFFFF;
+                        padding-right:28px;
+                        border: 2px solid #fa0;
+                        border-right: none;
+                        position: relative;
+                        overflow: hidden;
+                        i{
+                            float: left;
+                            width: 25px;
+                            height: 36px;
+                            line-height: 36px;
+                            text-align: right;
+                            font-size: 14px;
+                            color: #ccc;
+                            
+                        }
+                        input{
+                            float: left;
+                            width: 355px;
+                            margin-top: 0;
+                            padding:9px 10px 9px 0;
+                            height: 18px;
+                            line-height: 18px;
+                            border: none;
+                            font-size: 12px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+#sobtn{
+    font-size: 18px;
+    width: 120px;
+    background: #FF9900;
+    height: 40px;
+    padding: 0;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-indent: 2px;
+    color: #fff;
+    border: 0;
+    float: left;
+}
