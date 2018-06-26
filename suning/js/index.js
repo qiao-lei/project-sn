@@ -27,6 +27,34 @@ $(function(){
 			});
 		}
 	});
+	//https://lib.suning.com/homepage/model/homepage1_326445_lazyload326445.json?callback=lazyload326445&_=1530025564371
+	$.ajax({
+		type:"get",
+		url:"https://lib.suning.com/homepage/model/homepage1_326445_lazyload326445.json",
+		dataType:"jsonp",
+		jsonpCallback:"lazyload326445",
+		async:true,
+		success:function(data){
+			$(".meiwei_wrap").append(data["data"]);
+			$("img").each(function(){
+			$(this).attr("src",$(this).attr("lazy-src"));
+			});
+		}
+	});
+	//https://lib.suning.com/homepage/model/homepage1_326446_lazyload326446.json?callback=lazyload326446&_=1530025591073
+	$.ajax({
+		type:"get",
+		url:"https://lib.suning.com/homepage/model/homepage1_326446_lazyload326446.json",
+		dataType:"jsonp",
+		jsonpCallback:"lazyload326446",
+		async:true,
+		success:function(data){
+			$(".mm_wrap").append(data["data"]);
+			$("img").each(function(){
+			$(this).attr("src",$(this).attr("lazy-src"));
+			});
+		}
+	});
 	$.ajax({
 		type:"get",
 		url:"https://lib.suning.com/api/jsonp/cb/sortList_v6-threeSortLoad.jsonp",
@@ -72,8 +100,9 @@ $(function(){
 				dataType:"jsonp",
 				success:function(data){
 					bannerpp(data);
-					$(".ban_nav").append("<a href=''></a>");
+					$(".ban_nav").append("<a href='#'></a>");
 					$(".ban_nav a").eq(0).addClass("current");
+					
 				}
 			});
 		}
@@ -104,6 +133,11 @@ $(function(){
 	},3000);
 	$(".banner").mouseover(function(){
 		clearInterval(timer);
+		$(".ban_nav a").mouseover(function(){
+			$(this).addClass("current");
+			count=$(this).index()-1;
+			bannmove();
+		});
 	});
 	$(".banner").mouseout(function(){
 		timer=setInterval(function(){
@@ -117,10 +151,51 @@ $(function(){
 	$(".btn_right").click(function(){
 		bannmove();
 	});
-//	$(".ban_nav a").click(function(){
-//		$(this).addClass("current");
-//		count=$(this).index();
-//		console.log($(this).index());
-//		bannmove();
-//	});
+
+});
+//聚惠好货部分https://ju.suning.com/ajax/getCommListForCmsJsonp_LFHFYSY__PC_15_yscb.html，
+$(function(){
+	$.ajax({
+		type:"get",
+		url:"https://ju.suning.com/ajax/getCommListForCmsJsonp_LFHFYSY__PC_15_yscb.html",
+		dataType:"jsonp",
+		jsonpCallback:"yscb",
+		async:true,
+		success:function(data){
+//			$(".ju_ul");
+			var arrlist=data["commInfoList"];
+			for(var i=0;i<arrlist.length;i++){
+				var $julist=$("<li></li>");
+				$julist.append(`<a href="#">
+								<img src="${arrlist[i]['grppurDetailUrl']}"/>
+								<p class="name">${arrlist[i]['grppurName']}</p>
+								<p class="ju_price">
+									<span class="price">
+										<i>￥</i>
+										<em>${arrlist[i]['gbPrice']}</em>
+									</span>
+								</p>
+								<span class="line"></span>
+							</a>
+					`);
+				$(".ju_ul").append($julist);	
+			}
+			$(".ju_ul").width(arrlist.length*200);
+		}
+	});
+//	好或部分
+	(function(){
+		for(var i=0;i<6;i++){
+			var $li=$("<li></li>");
+			$li.append(`
+				<a href="#">
+					<p>艾因儿童椅</p>
+					<p>382人说好</p>
+					<img src="https://image3.suning.cn/uimg/b2c/qrqm/0000000000000000000141604532_200x200.jpg?ver=2004&from=mobile"/>
+					</a>
+				`);
+			$(".hh_ul").append($li);	
+		}
+		$(".hh_ul li:odd").css("border-right","none");
+	})();
 });

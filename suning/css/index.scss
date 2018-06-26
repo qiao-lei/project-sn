@@ -661,7 +661,152 @@ body{
         }
     }
     .ban_min{
-        
+        position: absolute;
+        top: 5px;
+        left: 50%;
+        width: 170px;
+        height: 430px;
+        background: #fff;
+        margin-left: 425px;
+        .bm_top{
+            position: relative;
+            width: 170px;
+            height: 155px;
+            padding: 11px 0 2px;
+            border-bottom: 1px solid #f2f2f2;
+            .user_img{
+                position: relative;
+                width: 52px;
+                height: 52px;
+                margin: 0 auto;
+                background: url(../imgs/index.png) -93px -23;
+                >span{
+                    position: absolute;
+                    display: block;
+                    top: 0;left: 0;
+                    width: 52px;
+                    height: 52px;
+                    background: url(../imgs/index.png) -93px -23px;
+                }
+            }
+            >p{
+                width: 150px;
+                height: 24px;
+                line-height: 24px;
+                margin: 8px auto 0;
+                text-align: center;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+            .user_btn{
+                width: 100%;
+                margin: 6px auto;
+                height: 22px;
+                overflow: hidden;
+                text-align: center;
+                >a{
+                    display: inline-block;
+                    vertical-align: middle;
+                    margin: 0 3px;
+                }
+                .register{
+                    width: 68px;
+                    height: 20px;
+                    border: 1px solid #f90;
+                    color: #ffa114;
+                    line-height: 20px;
+                }
+                .superhy{
+                    width: 70px;
+                    height: 22px;
+                    line-height: 22px;
+                    background: url(../imgs/index.png) -295px -251px;
+                }
+            }
+            .user_enter{
+               margin: 0 10px;
+               height: 26px;
+               >a{
+                   float: left;
+                   height: 26px;
+                   text-align: center;
+                   >em{
+                        display: inline-block;
+                       margin-right: 5px;
+                       vertical-align: middle;
+                       width: 16px;
+                       height: 14px;
+                       background: url(../imgs/index.png) -110px 0;
+                   }
+                   >span{
+                       display: inline-block;
+                       margin-right: 5px;
+                       vertical-align: middle;
+                   }
+                   >i{
+                       display: inline-block;
+                       vertical-align: middle;
+                       font-style: normal;
+                   }
+               }
+            }
+        }
+        .bm_middle{
+            width: 150px;
+            height: 97px;
+            overflow: hidden;
+            margin: 9px 10px;
+            line-height: 20px;
+            >ul{
+             width: 150px;
+             li{
+                 width: 150px;
+                 height: 48px;
+                 >p{
+                     width: 150px;
+                     height: 40px;
+                     overflow: hidden;
+                     >i{
+                         margin-right: 5px;
+                         color: #f60;
+                         font-style: normal;
+                     }
+                 }
+             }   
+            }
+        }
+        .bm_bottom{
+           width: 170px;
+           height: 145px;
+           overflow: hidden;
+           border-top: 1px solid #f2f2f2; 
+           >ul{
+               width: 171px;
+               height: 146px;
+               >li{
+                   float: left;
+                   width: 56px;
+                   height: 72px;
+                   border-width: 0 1px 1px 0;
+                   border-style:solid;
+                   border-color: #f2f2f2;
+                 >a{
+                     display: block;
+                     width: 100%;
+                     height: 62px;
+                     padding-top: 10px;
+                     text-align: center;
+                     >i{
+                         font-size: 24px;
+                         color: #f90;
+                         display: inline-block;
+                         font-style: normal;
+                     }
+                 }
+               }
+           }
+        }
     }
     .ban_right{
         position: absolute;
@@ -691,8 +836,203 @@ body{
         }
     }
 }
+//聚惠部分
+.ju_floor{
+    width: 100%;
+    position: relative;
+    margin: 0;
+    overflow: hidden;
+    height: 305px;
+    padding-top: 20px;
+    .ju_content{
+        @include conwidth;
+        .ju_title{
+            width: 100%;
+            height: 43px;
+            border-bottom: 2px solid #dd2726;
+            >h5{
+                float: left;
+                width: 175px;
+                padding: 0 0 0 15px;
+                height: 43px;
+                background: #dd2726;
+                color: #fff;
+                font-weight: bold;
+                font-size: 20px;
+                line-height: 38px;
+                span{
+                }
+                i{
+                    display: inline-block;
+                    width: 93px;
+                    height: 13px;
+                    margin: 4px 0 0 5px;
+                    background: url(../imgs/index.png) 0 -124px;
+                }
+            }
+        }
+        .ju_com{
+            width: 100%;
+            height: 260px;
+            background: #fff;
+            .ju_list{
+                width: 999px;
+                position: relative;
+                height: 240px;
+                padding-top: 20px;
+                overflow:hidden;
+                ul{
+                    position: absolute;
+                    height: 240px;
+                    >li{
+                        float: left;
+                        position: relative;
+                        width: 200px;
+                        height: 240px;
+                        >a{
+                            cursor: pointer;
+                            >img{
+                                display: block;
+                                width: 160px;
+                                height: 160px;
+                                margin: 0 auto;
+                                transition: all .5s;
+                                &:hover{
+                                    transform: scale(1.1);
+                                }
+                            }
+                            .name{
+                                width: 160px;
+                                height: 36px;
+                                margin: 10px auto 3px;
+                                color: #474747;
+                                overflow: hidden;
+                                line-height: 18px;
+                                word-break: break-all;
+                            }
+                            .ju_price{
+                                width: 160px;
+                                margin: 0 auto;
+                                .price{
+                                    color:#f60;
+                                    float: left;
+                                    >i{
+                                        font-size:16px;
+                                        font-weight: bold;
+                                        font-style: normal;
+                                    }
+                                    >em{
+                                        font-size:16px;
+                                        font-weight: bold;
+                                        font-style: normal;
+                                    }
+                                }
+                            }
+                            .line{
+                                position: absolute;
+                                right: 0;top: 0;
+                                height: 140px;
+                                width: 0;
+                                border-right: 1px solid #eee;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+.clearfloat:after{
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+//好货
+.hao_wrap{
+    width: 1190px;
+    margin: 20px auto;
+    position: relative;
+    >div{
+        width: 390px;
+        float: left;
+        height: 427px;
+        background: #fff;
+        margin-left: 10px;
+    }
+    .haohuo{
+        margin: 0;
+        .hh_title{
+            position: relative;
+            width: 100%;
+            height: 45px;
+            color: #fff;
+            background: #3b8c94;
+            >h5{
+                float: left;
+                padding-left: 15px;
+                font-weight: bold;
+                font-size: 18px;
+                line-height: 45px;
+            }
+            >a{
+                float: right;
+                margin: 15px 10px 0 0;
+                color: #fff;
+            }
+        }
+        .hh_con{
+            width: 369px;
+            height: 362px;
+            margin: 10px auto 0;
+            position: relative;
+            overflow: hidden;
+            ul{
+                width: 100%;
+                li{
+                    position: relative;
+                    float: left;
+                    width: 184px;
+                    height: 120px;
+                    border-width: 0 1px 1px 0;
+                    border-style: solid;
+                    border-color: #e7e7e7;
+                    >a{
+                        float: left;
+                        width: 184px;
+                        height: 120px;
+                        cursor: pointer;
+                        >p{
+                            width: 72px;
+                            height: 40px;
+                            overflow: hidden;
+                            margin: 14px 0 0 15px;
+                            color: #333;
+                            word-break: break-all;
+                        }
+                        >img{
+                            position: absolute;
+                            display: block;
+                            width: 90px;
+                            height: 90px;
+                            bottom: 3px;
+                            right: 3px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .hh_right{
+        margin-left: 10px;
+    }
+}
 //家用电器模块
-.product_wrap{
+.meiwei_wrap{
+    $listcolor:#e96f1e;
+}
+.product_wrap,.meiwei_wrap,.mm_wrap{
     $listcolor:#5f6cb7;
     width: 1190px;
     height: 455px;
@@ -924,4 +1264,54 @@ body{
             }
         }
     }
+}
+.mm_wrap{
+    width: 1190px;
+    height: 565px;
+    border:none;
+    background: #f2f2f2;
+    margin: 20px auto 0;
+    .floor-l{
+        float: left;
+        width: 590px;
+        height: 565px;
+        background: #fff;
+        border-top: 2px solid #fff;
+        box-shadow: 0 0 8px #eee;
+        .bottom-list{
+            position: relative;
+            width: 100%;
+            height: 109px;
+            border-bottom: 1px solid #eee;
+            overflow: hidden;
+            ul{
+                width: 593px;
+                li{
+                    width: 189px;
+                    float: left;
+                    height: 109px;
+                    position: relative;
+                    a{
+                        position: absolute;
+                        width: 100%;
+                        height:100%;
+                        top: 0;
+                        left: 0;
+                        p{
+                            width: 70px;
+                            height: 24px;
+                            margin-top: 27px;
+                            padding-left: 20px;
+                            overflow: hidden;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .right-floor{
+        margin-left: 10px;
+        width: 590px;
+    }
+    
 }

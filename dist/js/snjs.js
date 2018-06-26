@@ -139,6 +139,34 @@ $(function () {
 			});
 		}
 	});
+	//https://lib.suning.com/homepage/model/homepage1_326445_lazyload326445.json?callback=lazyload326445&_=1530025564371
+	$.ajax({
+		type: "get",
+		url: "https://lib.suning.com/homepage/model/homepage1_326445_lazyload326445.json",
+		dataType: "jsonp",
+		jsonpCallback: "lazyload326445",
+		async: true,
+		success: function success(data) {
+			$(".meiwei_wrap").append(data["data"]);
+			$("img").each(function () {
+				$(this).attr("src", $(this).attr("lazy-src"));
+			});
+		}
+	});
+	//https://lib.suning.com/homepage/model/homepage1_326446_lazyload326446.json?callback=lazyload326446&_=1530025591073
+	$.ajax({
+		type: "get",
+		url: "https://lib.suning.com/homepage/model/homepage1_326446_lazyload326446.json",
+		dataType: "jsonp",
+		jsonpCallback: "lazyload326446",
+		async: true,
+		success: function success(data) {
+			$(".mm_wrap").append(data["data"]);
+			$("img").each(function () {
+				$(this).attr("src", $(this).attr("lazy-src"));
+			});
+		}
+	});
 	$.ajax({
 		type: "get",
 		url: "https://lib.suning.com/api/jsonp/cb/sortList_v6-threeSortLoad.jsonp",
@@ -180,7 +208,7 @@ $(function () {
 				dataType: "jsonp",
 				success: function success(data) {
 					bannerpp(data);
-					$(".ban_nav").append("<a href=''></a>");
+					$(".ban_nav").append("<a href='#'></a>");
 					$(".ban_nav a").eq(0).addClass("current");
 				}
 			});
@@ -205,6 +233,11 @@ $(function () {
 	}, 3000);
 	$(".banner").mouseover(function () {
 		clearInterval(timer);
+		$(".ban_nav a").mouseover(function () {
+			$(this).addClass("current");
+			count = $(this).index() - 1;
+			bannmove();
+		});
 	});
 	$(".banner").mouseout(function () {
 		timer = setInterval(function () {
@@ -218,10 +251,33 @@ $(function () {
 	$(".btn_right").click(function () {
 		bannmove();
 	});
-	//	$(".ban_nav a").click(function(){
-	//		$(this).addClass("current");
-	//		count=$(this).index();
-	//		console.log($(this).index());
-	//		bannmove();
-	//	});
+});
+//聚惠好货部分https://ju.suning.com/ajax/getCommListForCmsJsonp_LFHFYSY__PC_15_yscb.html，
+$(function () {
+	$.ajax({
+		type: "get",
+		url: "https://ju.suning.com/ajax/getCommListForCmsJsonp_LFHFYSY__PC_15_yscb.html",
+		dataType: "jsonp",
+		jsonpCallback: "yscb",
+		async: true,
+		success: function success(data) {
+			//			$(".ju_ul");
+			var arrlist = data["commInfoList"];
+			for (var i = 0; i < arrlist.length; i++) {
+				var $julist = $("<li></li>");
+				$julist.append("<a href=\"#\">\n\t\t\t\t\t\t\t\t<img src=\"" + arrlist[i]['grppurDetailUrl'] + "\"/>\n\t\t\t\t\t\t\t\t<p class=\"name\">" + arrlist[i]['grppurName'] + "</p>\n\t\t\t\t\t\t\t\t<p class=\"ju_price\">\n\t\t\t\t\t\t\t\t\t<span class=\"price\">\n\t\t\t\t\t\t\t\t\t\t<i>\uFFE5</i>\n\t\t\t\t\t\t\t\t\t\t<em>" + arrlist[i]['gbPrice'] + "</em>\n\t\t\t\t\t\t\t\t\t</span>\n\t\t\t\t\t\t\t\t</p>\n\t\t\t\t\t\t\t\t<span class=\"line\"></span>\n\t\t\t\t\t\t\t</a>\n\t\t\t\t\t");
+				$(".ju_ul").append($julist);
+			}
+			$(".ju_ul").width(arrlist.length * 200);
+		}
+	});
+	//	好或部分
+	(function () {
+		for (var i = 0; i < 6; i++) {
+			var $li = $("<li></li>");
+			$li.append("\n\t\t\t\t<a href=\"#\">\n\t\t\t\t\t<p>\u827E\u56E0\u513F\u7AE5\u6905</p>\n\t\t\t\t\t<p>382\u4EBA\u8BF4\u597D</p>\n\t\t\t\t\t<img src=\"https://image3.suning.cn/uimg/b2c/qrqm/0000000000000000000141604532_200x200.jpg?ver=2004&from=mobile\"/>\n\t\t\t\t\t</a>\n\t\t\t\t");
+			$(".hh_ul").append($li);
+		}
+		$(".hh_ul li:odd").css("border-right", "none");
+	})();
 });
