@@ -57,7 +57,7 @@ $(function(){
 				var $div=$("<div><div></div></div>");
 				$div.append("<a href='#'><p class='img_name'>"+data[i]["title"]+"</p><p class='img_desc'>"+data[i]["subtitle"]+"</p><img src='"+data[i]["adSrc"]+"'/></a>");
 				$li.append($div);
-				$(".ban_nav").append("<a href=''></a>");
+				
 			}
 			$li.children().last().addClass("little");
 			$ul.append($li);
@@ -72,6 +72,8 @@ $(function(){
 				dataType:"jsonp",
 				success:function(data){
 					bannerpp(data);
+					$(".ban_nav").append("<a href=''></a>");
+					$(".ban_nav a").eq(0).addClass("current");
 				}
 			});
 		}
@@ -86,13 +88,39 @@ $(function(){
 	"https://th.suning.com/getCpmDatasGroup?pid=300000026&pid=100003455&pid=100003456&screenType=w"]
 	bannernum(arrurl);
 	var count=0;
-	var timer = setInterval(function(){
+	function bannmove(){
 		count++;
-		if(count>$(".ban_con ul>li").length-1){
+		if(count==$(".ban_con ul>li").length){
 			count=0;
+		}
+		if(count==-1){
+			count=$(".ban_con ul>li").length-1;
 		}
 		$(".ban_con ul>li").hide().eq(count).show();
 		$(".ban_nav a").removeClass("current").eq(count).addClass("current");
-		
-	},3000)
+	}
+	var timer = setInterval(function(){
+		bannmove();
+	},3000);
+	$(".banner").mouseover(function(){
+		clearInterval(timer);
+	});
+	$(".banner").mouseout(function(){
+		timer=setInterval(function(){
+			bannmove();
+		},3000);
+	});
+	$(".btn_left").click(function(){
+		count-=2;
+		bannmove();
+	});
+	$(".btn_right").click(function(){
+		bannmove();
+	});
+//	$(".ban_nav a").click(function(){
+//		$(this).addClass("current");
+//		count=$(this).index();
+//		console.log($(this).index());
+//		bannmove();
+//	});
 });
