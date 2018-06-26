@@ -445,6 +445,250 @@ body{
                 }
             }
         }
+        .nav_index{
+            width: 785px;
+            height: 38px;
+            line-height: 38px;
+            overflow: hidden;
+            margin-left: -405px;
+            position: absolute;
+            left: 50%;
+            padding-left: 10px;
+            z-index: 666;
+            ul{
+                li{
+                    float: left;
+                    position: relative;
+                    height: 38px;
+                    line-height: 38px;
+                    padding: 0 12px 0 13px;
+                    font-weight: bold;
+                    a{
+                        font-size: 15px;
+                        position: relative;
+                        color: #333;
+                        float: left;
+                        &:hover{
+                            color: #f40;
+                        }
+                    }
+                    span{
+                        position: absolute;
+                        width: 25px;
+                        height: 8px;
+                        bottom: -8px;
+                        left: 50%;
+                        margin-left: -12px;
+                        background: url(../imgs/index.png) no-repeat -37px 0;
+                        transition: all .5s;
+                    }
+                    &:hover{
+                        span{
+                            bottom: 0;
+                        }
+                    }
+                }
+            }
+        }
+        .nav_right{
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 170px;
+            height: 38px;
+            margin-left: 425px;
+            a{
+                img{
+                    display: block;
+                    width: 170px;
+                    height: 38px;
+                }
+            }
+        }
+    }
+}
+//轮播图快
+.banner_wrap{
+    width: 100%;
+    position:relative;
+    height: 440px;
+    overflow: hidden;
+    .banner{
+        position: relative;
+        width: 100%;
+        height: 440px;
+        overflow: hidden;
+        .ban_con{
+            position: absolute;
+            width: 100%;
+            height: 440px;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            ul{
+                position: absolute;
+                width: 100%;
+                height: 440px;
+                top: 0;
+                left: 0;
+                overflow: hidden;
+                li{
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 440px;
+                    >a{
+                        position: absolute;
+                        display: block;
+                        width: 830px;
+                        height: 440px;
+                        top: 0;left: 50%;
+                        margin-left: -405px;
+                        img{
+                            display: block;
+                            width: 100%;
+                            height: 100%;
+                        }
+                    }
+                    >div{
+                        position: absolute;
+                        top: 5px;
+                        left: 50%;
+                        margin-left: 270px;
+                        width: 150px;
+                        height: 213px;
+                        @mixin bannpic{
+                            position: absolute;
+                            width: 100%;
+                            height: 100%;
+                        }
+                        >div{
+                            @include bannpic;
+                            background: #fff;
+                            opacity: .8;
+                        }
+                        >a{
+                           @include bannpic;
+                           top: 0;left: 0;
+                           display: block;
+                            color: #333;
+                            .img_name{
+                                position: absolute;
+                                top: 17px;
+                                left: 19px;
+                                height: 22px;
+                                line-height: 22px;
+                                overflow: hidden;
+                                font-size: 14px;
+                                }
+                           .img_desc{
+                                position: absolute;
+                                top: 37px;
+                                left: 19px;
+                                height: 18px;
+                                line-height: 18px;
+                                overflow: hidden;
+                                font-size: 12px;
+                                color: #666;
+                            }
+                           >img{
+                                position: absolute;
+                                top: 67px;
+                                left: 5px;
+                                width: 140px;
+                                height: 140px;
+                           }
+                         }
+                    }
+                    .little{
+                        top: 222px;
+                    }
+                }
+            }
+        }
+        .btn{
+            position: absolute;
+            display: none;
+            width: 30px;
+            height: 64px;
+            top: 180px;
+            background-image: url(../imgs/index.png);
+        }
+        .btn_left{
+            left: 50%;
+            margin-left: -405px;
+            background-position: -82px -145px;
+        }
+        .btn_right{
+            right: 50%;
+            margin-right: -425px;
+            background-position: -120px -145px;
+        }
+        &:hover{
+            .btn{
+                display: block;
+            }
+        }
+        .banner_index{
+            position: absolute;
+            top: 400px;
+            width: 100%;
+            height: 20px;
+            text-align: center;
+            font-size: 0;
+            .ban_nav{
+                position: relative;
+                display: inline-block;
+                opacity: .8;
+                padding: 0 8px 0 0;
+                height: 20px;
+                font-size: 0;
+                text-align: center;
+                a{
+                    position: relative;
+                    display: inline-block;
+                    margin-left: 8px;
+                    width: 20px;
+                    height: 20px;
+                    background: url(../imgs/index.png) -26px -100px;
+                    color: #fff;
+                }
+                .current{
+                    background-position: 0 -100px;
+                }
+            }
+        }
+    }
+    .ban_min{
+        
+    }
+    .ban_right{
+        position: absolute;
+        width: 200px;
+        height: 440px;
+        top: 0;
+        right: 50%;
+        margin-right: -795px;
+        a{
+            .brimg1{
+                width: 200px;
+                height: 440px;
+                z-index: 3;
+                position: absolute;
+                display: block;
+                top: 0;right: 0;
+                right: 0;
+            }
+            .brimg2{
+                width: 1000px;
+                height: 440px;
+                z-index: 1;
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+        }
     }
 }
 //家用电器模块
