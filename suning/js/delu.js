@@ -5,6 +5,7 @@ $(function(){
 	var flag1=false;
 	var flag2=false;
 	$("#username").focus(function(){
+		$("#errorname").text("");
 		if(!regname.test($(this).val())){
 			$("#errorname").text("请输入以字母、数字、_开头的3到16位字符，不支持中文").css("color","#FF4400");
 		}
@@ -41,13 +42,26 @@ $(function(){
 		}
 	});
 	$("#tijao").click(function(){
-		if(flag1==true&&flag2==true){
-			$("#zhucefm").hide().parent().append("<div><a href='../index.html'>跳转到去首页</a></div>")
-			.css({"height":"100px","width":"990px","text-align":"center","font-size":"18px","line-height":"100px"})
-		}else{
-			$("#errorname").text("用户名不能为空！").css("color","red");
-		}
-	});
+		$.get("http://datainfo.duapp.com/shopdata/userinfo.php",{status:"register",userID:$("#username").val(),password:$("#password").val()},function(data){
+			data=JSON.parse(data);
+			if(data==0){
+				$("#errorname").text("用户已存在！").css("color","red");
+			}else if(data==1){
+				location.href="denglu.html";
+			}else{
+				$("#zhucefm").hide().parent().append("<div><a href='zhuce.html'>注册失败，请重试！</a></div>")
+				.css({"height":"100px","width":"990px","text-align":"center","font-size":"18px","line-height":"100px"});
+		
+			}
+			});
+		});
+//		if(flag1==true&&flag2==true){
+//			$("#zhucefm").hide().parent().append("<div><a href='../index.html'>跳转到去首页</a></div>")
+//			.css({"height":"100px","width":"990px","text-align":"center","font-size":"18px","line-height":"100px"})
+//		}else{
+//			$("#errorname").text("用户名不能为空！").css("color","red");
+//		}
+	
 //登录验证；wx_dl  zh_dl
 	
 	$(".login_top a").eq(0).click(function(){
@@ -62,21 +76,33 @@ $(function(){
 	});
 	
 	$("#dlbtn").click(function(){
-		for(var i=0;i<jsonzc.length;i++){
-			if($("#userdl").val()==jsonzc[i]["user"]){
-				$("#dlerrorname").text("");
-				if($("#passworddl").val()==jsonzc[i]["pass"]){
-					location.href="../index.html";
-					
-					break;
-				}else{
-					$("#dlerrorpassword").text("密码不对!").css("color","red");
-					break;
-				}
-			}else{
+		$.get("http://datainfo.duapp.com/shopdata/userinfo.php",{status:"login",userID:$("#userdl").val(),password:$("#passworddl").val()},function(data){
+			data=JSON.parse(data);
+			
+			if(data==0){
 				$("#dlerrorname").text("此用户不存在！").css("color","red");
+			}else if(data == 2){
+				$("#dlerrorpassword").text("密码不对!").css("color","red");
+			}else{
+				$.cookie("username",data["userID"],{expires:7,path:"/"});
+				location.href="index.html";
 			}
-		}
+		});
+//		for(var i=0;i<jsonzc.length;i++){
+//			if($("#userdl").val()==jsonzc[i]["user"]){
+//				$("#dlerrorname").text("");
+//				if($("#passworddl").val()==jsonzc[i]["pass"]){
+//					location.href="../index.html";
+//					
+//					break;
+//				}else{
+//					$("#dlerrorpassword").text("密码不对!").css("color","red");
+//					break;
+//				}
+//			}else{
+//				$("#dlerrorname").text("此用户不存在！").css("color","red");
+//			}
+//		}
 	});
 	$("#userdl").focus(function(){
 		$("#dlerrorname").text("");

@@ -60,3 +60,45 @@ input,a{outline:none;}
         }
     }
 }
+
+.listmore{
+    width: 1190px;
+    margin: 0 auto;
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: flex-start;
+    div{
+       
+        width: 230px;
+       
+        a{
+           display: block;
+           text-align: center;
+           img{
+               
+               width: 220px;
+               height: 220px;
+           }
+           p{
+               height: 20px;
+               line-height: 20px;
+               overflow:hidden;
+               &:hover{
+                   color: #f60;
+               }
+               &:nth-of-type(2){
+                   color: #f60;
+               }
+           }
+        }
+    }
+}
+.list_xx{
+    width: 1190px;
+    margin: 0 auto;
+    position: relative;
+    min-height: 520px;
+    background: #fff;
+}

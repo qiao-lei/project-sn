@@ -7,6 +7,7 @@ $(function () {
 	var flag1 = false;
 	var flag2 = false;
 	$("#username").focus(function () {
+		$("#errorname").text("");
 		if (!regname.test($(this).val())) {
 			$("#errorname").text("请输入以字母、数字、_开头的3到16位字符，不支持中文").css("color", "#FF4400");
 		}
@@ -43,12 +44,24 @@ $(function () {
 		}
 	});
 	$("#tijao").click(function () {
-		if (flag1 == true && flag2 == true) {
-			$("#zhucefm").hide().parent().append("<div><a href='../index.html'>跳转到去首页</a></div>").css({ "height": "100px", "width": "990px", "text-align": "center", "font-size": "18px", "line-height": "100px" });
-		} else {
-			$("#errorname").text("用户名不能为空！").css("color", "red");
-		}
+		$.get("http://datainfo.duapp.com/shopdata/userinfo.php", { status: "register", userID: $("#username").val(), password: $("#password").val() }, function (data) {
+			data = JSON.parse(data);
+			if (data == 0) {
+				$("#errorname").text("用户已存在！").css("color", "red");
+			} else if (data == 1) {
+				location.href = "denglu.html";
+			} else {
+				$("#zhucefm").hide().parent().append("<div><a href='zhuce.html'>注册失败，请重试！</a></div>").css({ "height": "100px", "width": "990px", "text-align": "center", "font-size": "18px", "line-height": "100px" });
+			}
+		});
 	});
+	//		if(flag1==true&&flag2==true){
+	//			$("#zhucefm").hide().parent().append("<div><a href='../index.html'>跳转到去首页</a></div>")
+	//			.css({"height":"100px","width":"990px","text-align":"center","font-size":"18px","line-height":"100px"})
+	//		}else{
+	//			$("#errorname").text("用户名不能为空！").css("color","red");
+	//		}
+
 	//登录验证；wx_dl  zh_dl
 
 	$(".login_top a").eq(0).click(function () {
@@ -63,21 +76,33 @@ $(function () {
 	});
 
 	$("#dlbtn").click(function () {
-		for (var i = 0; i < jsonzc.length; i++) {
-			if ($("#userdl").val() == jsonzc[i]["user"]) {
-				$("#dlerrorname").text("");
-				if ($("#passworddl").val() == jsonzc[i]["pass"]) {
-					location.href = "../index.html";
+		$.get("http://datainfo.duapp.com/shopdata/userinfo.php", { status: "login", userID: $("#userdl").val(), password: $("#passworddl").val() }, function (data) {
+			data = JSON.parse(data);
 
-					break;
-				} else {
-					$("#dlerrorpassword").text("密码不对!").css("color", "red");
-					break;
-				}
-			} else {
+			if (data == 0) {
 				$("#dlerrorname").text("此用户不存在！").css("color", "red");
+			} else if (data == 2) {
+				$("#dlerrorpassword").text("密码不对!").css("color", "red");
+			} else {
+				$.cookie("username", data["userID"], { expires: 7, path: "/" });
+				location.href = "index.html";
 			}
-		}
+		});
+		//		for(var i=0;i<jsonzc.length;i++){
+		//			if($("#userdl").val()==jsonzc[i]["user"]){
+		//				$("#dlerrorname").text("");
+		//				if($("#passworddl").val()==jsonzc[i]["pass"]){
+		//					location.href="../index.html";
+		//					
+		//					break;
+		//				}else{
+		//					$("#dlerrorpassword").text("密码不对!").css("color","red");
+		//					break;
+		//				}
+		//			}else{
+		//				$("#dlerrorname").text("此用户不存在！").css("color","red");
+		//			}
+		//		}
 	});
 	$("#userdl").focus(function () {
 		$("#dlerrorname").text("");
@@ -110,10 +135,18 @@ $(function () {
 	});
 });
 
+$(function () {
+	var goodsid = location.search.split("=")[1];
+	$.getJSON("http://datainfo.duapp.com/shopdata/getGoods.php?callback=?", { goodsID: goodsid }, function (data) {
+		var str = "<img src=\"" + data[0].goodsListImg + "\">\n\t\t\t\t\t<p>" + data[0].goodsName + "</p>\n\t\t\t\t\t<p>" + data[0].price + "</p>\n\t\t\t\t\t<input type= \"button\" value=\"\u6DFB\u52A0\u8D2D\u7269\u8F66\">\n\t\t\t\t\t";
+		$(".list_xx").html(str);
+	});
+});
 ;(function () {
 	//	console.log("aaaa");
 })();
 $(function () {
+	$("#wrap_foot").load("footer.html");
 	$(".hoverul").mouseover(function () {
 		$(this).children().eq(1).show();
 	});
@@ -126,6 +159,37 @@ $(function () {
 	$(".ban_right").mouseleave(function () {
 		$(this).stop().animate({ width: $(".brimg1").outerWidth() }, 500);
 	});
+
+	//	搜索框
+	$(".soso_result>i").click(function () {
+		$(this).parent().hide();
+	});
+	$("#soname").focus(function () {
+		$(".soso_result").show();
+	});
+	$("#soname").blur(function () {
+		$(".soso_result").hide();
+	});
+	$("#soname").on("input", function () {
+		$(".result").html("");
+		$.ajax({
+			type: "get",
+			url: "https://ds.suning.cn/ds/his/new/-" + $(this).val() + "-0-1_0-autoComplateCallback_184b31b125a59d8c382d3d8382d23350.jsonp",
+			dataType: "jsonp",
+			jsonpCallback: "autoComplateCallback_184b31b125a59d8c382d3d8382d23350",
+			async: true,
+			success: function success(data) {
+				for (var i = 0; i < data["words"].length; i++) {
+					var $li = $("<li></li>");
+					$li.append(data["words"][i]["keyname"]);
+					$(".result").append($li);
+				}
+			}
+		});
+	});
+	//固定搜索框；
+	//	$(".header").append($(".index_all").clone(true).addClass("index_all")).append($(".sousuo_nei").clone(true).addClass("sousuo_nei"));
+
 	$.ajax({
 		type: "get",
 		url: "https://lib.suning.com/homepage/model/homepage1_326191_lazyload326191.json",
@@ -167,6 +231,7 @@ $(function () {
 			});
 		}
 	});
+	//	全部商品菜单
 	$.ajax({
 		type: "get",
 		url: "https://lib.suning.com/api/jsonp/cb/sortList_v6-threeSortLoad.jsonp",
@@ -184,6 +249,29 @@ $(function () {
 				$(".list_list").append(lilist).find("em").last().remove();
 			}
 			$(".list_list>li>em").last().remove();
+			$(".list_list>li").mouseenter(function () {
+				$(".list_detal").html("").stop().animate({ width: "999px" }, 300);
+				var index = $(this).index();
+				var $div = $("<div class='detal_title'></div");
+				for (var i = 0; i < result[index]["nodes"][1]["tag"].length; i++) {
+					$div.append("<a href='#'>" + result[index]["nodes"][1]["tag"][i]["elementName"] + "</a>");
+				}
+				var $condiv = $("<ul class='detal_con'></ul>");
+				$.get("http://datainfo.duapp.com/shopdata/getclass.php", function (data) {
+					data = JSON.parse(data);
+					console.log(data);
+					var str = "";
+					$.each(data, function (index, item) {
+						str += "<li><a href=\"list.html?classID=" + item.classID + "\">" + item.className + "<a></li>";
+					});
+					$condiv.html(str);
+				});
+				$(".list_detal").append($div).append($condiv);
+			});
+
+			$(".list_detal").mouseleave(function () {
+				$(this).stop().animate({ width: 0 }, 300);
+			});
 		}
 	});
 	var $ul = $("<ul></ul>");
@@ -280,4 +368,16 @@ $(function () {
 		}
 		$(".hh_ul li:odd").css("border-right", "none");
 	})();
+});
+
+$(function () {
+	var classid = location.search.split("=")[1];
+	$.getJSON("http://datainfo.duapp.com/shopdata/getGoods.php?callback=?", { classID: classid }, function (data) {
+		//		data=JSON.parse(data);
+		var str = "";
+		$.each(data, function (index, item) {
+			str += "<div>\n\t\t\t\t\t<a href=\"xiangxi.html?id=" + item.goodsID + "\">\n\t\t\t\t\t<img src=\"" + item.goodsListImg + "\">\n\t\t\t\t\t<p>" + item.goodsName + "</p>\n\t\t\t\t\t<p>\uFFE5" + item.price + "</p>\n\t\t\t\t\t</a>\n\t\t\t\t\t</div>";
+		});
+		$(".listmore").html(str);
+	});
 });

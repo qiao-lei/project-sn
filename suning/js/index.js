@@ -2,6 +2,7 @@
 //	console.log("aaaa");
 })();
 $(function(){
+	$("#wrap_foot").load("footer.html");
 	$(".hoverul").mouseover(function(){
 		$(this).children().eq(1).show();
 	});
@@ -14,6 +15,37 @@ $(function(){
 	$(".ban_right").mouseleave(function(){
 		$(this).stop().animate({width:$(".brimg1").outerWidth()},500)
 	});
+	
+//	搜索框
+	$(".soso_result>i").click(function(){
+		$(this).parent().hide();
+	});
+	$("#soname").focus(function(){
+		$(".soso_result").show();
+	});
+	$("#soname").blur(function(){
+		$(".soso_result").hide();
+	});
+	$("#soname").on("input",function(){
+		$(".result").html("");
+		$.ajax({
+			type:"get",
+			url:"https://ds.suning.cn/ds/his/new/-"+$(this).val()+"-0-1_0-autoComplateCallback_184b31b125a59d8c382d3d8382d23350.jsonp",
+			dataType:"jsonp",
+			jsonpCallback:"autoComplateCallback_184b31b125a59d8c382d3d8382d23350",
+			async:true,
+			success:function(data){
+				for(var i=0;i<data["words"].length;i++){
+					var $li=$("<li></li>");
+					$li.append(data["words"][i]["keyname"]);
+					$(".result").append($li);
+				}
+			}
+		});
+	});
+	//固定搜索框；
+//	$(".header").append($(".index_all").clone(true).addClass("index_all")).append($(".sousuo_nei").clone(true).addClass("sousuo_nei"));
+	
 	$.ajax({
 		type:"get",
 		url:"https://lib.suning.com/homepage/model/homepage1_326191_lazyload326191.json",
@@ -55,6 +87,7 @@ $(function(){
 			});
 		}
 	});
+//	全部商品菜单
 	$.ajax({
 		type:"get",
 		url:"https://lib.suning.com/api/jsonp/cb/sortList_v6-threeSortLoad.jsonp",
@@ -72,7 +105,29 @@ $(function(){
 				$(".list_list").append(lilist).find("em").last().remove();
 			}
 			$(".list_list>li>em").last().remove();
-
+			$(".list_list>li").mouseenter(function(){
+				$(".list_detal").html("").stop().animate({width:"999px"},300);
+			   	var index=$(this).index();
+			   var $div=$("<div class='detal_title'></div");
+				for(var i=0;i<result[index]["nodes"][1]["tag"].length;i++){
+					$div.append("<a href='#'>"+result[index]["nodes"][1]["tag"][i]["elementName"]+"</a>");
+				}
+				var $condiv=$("<ul class='detal_con'></ul>");
+				$.get("http://datainfo.duapp.com/shopdata/getclass.php",function(data){
+					data=JSON.parse(data);
+					console.log(data)
+					var str="";
+					$.each(data, function(index,item) {
+						str+=`<li><a href="list.html?classID=${item.classID}">${item.className}<a></li>`;
+					});
+					$condiv.html(str);
+				});
+				$(".list_detal").append($div).append($condiv);
+			});
+			
+			$(".list_detal").mouseleave(function(){
+				$(this).stop().animate({width:0},300);
+			});
    		 }
 	});
 	var $ul = $("<ul></ul>");

@@ -5,6 +5,16 @@
 body{
     background: #f2f2f2;
 }
+.header{
+    position: fixed;
+    z-index: 999;
+    height: 50px;
+    width: 100%;
+    background: #fff;
+    left: 0;top: 0;
+    opacity: .9;
+    display: none;
+}
 .top_wrap{
     width: 100%;
     background: #f5f5f5;
@@ -229,7 +239,7 @@ body{
         @include conwidth;
         height: 110px;
         position: relative;
-        z-index: 1;
+        z-index: 600;
         .index_logo{
             @include soso;
             top: 0;
@@ -252,8 +262,8 @@ body{
                 margin-top: 30px;
                 float: right;
                 position: relative;
-                >form{
-                    >div{
+                form{
+                    div{
                         width: 390px;
                         float: left;
                         background: #FFFFFF;
@@ -281,6 +291,46 @@ body{
                             line-height: 18px;
                             border: none;
                             font-size: 12px;
+                        }
+                    }
+                }
+                .soso_result{
+                    display: none;
+                    width: 538px;
+                    position: absolute;
+                    left: 0;
+                    top: 41px;
+                    border: 1px solid #e4e4e4;
+                    background: #fff;
+                    z-index:700;
+                    overflow: hidden;
+                   >i{
+                       display: block;
+                       position: absolute;
+                       top: 0;
+                       right: 0;
+                       width: 24px;
+                       height: 24px;
+                       text-align: center;
+                       line-height: 24px;
+                       cursor: pointer;
+                       font-size: 16px;
+                       z-index: 10;
+                   }
+                    .result{
+                        width: 100%;
+                        float: left;
+                        >li{
+                            position: relative;
+                            height: 24px;
+                            line-height: 24px;
+                            padding: 0 10px;
+                            color: #666;
+                            overflow: hidden;
+                            font-weight: bold;
+                            &:hover{
+                                background: #efefef;
+                            }
                         }
                     }
                 }
@@ -339,11 +389,12 @@ body{
     width: 100%;
     background: #fff;
     position: relative;
+    z-index: 500;
     height: 38px;
     .nav{
         @include conwidth;
         position: relative;
-        z-index: 666;
+        z-index: 500;
         .index_all{
             position: absolute;
             width: 190px;
@@ -438,10 +489,42 @@ body{
                 .list_detal{
                     position: absolute;
                     left: 190px;
+                    width: 0;
+                    top: 0;
                     min-height: 448px;
                     overflow: hidden;
                     background: #fff;
                     z-index: 777;
+                    .detal_title{
+                        width: 686px;
+                        float: left;
+                        height: 24px;
+                        margin: 10px 0 0 8px;
+                        overflow: hidden;
+                        a{
+                            float: left;
+                            height: 24px;
+                            margin-left: 25px;
+                            padding: 0 10px;
+                            background: #f90;
+                        }
+                    }
+                    .detal_con{
+                        width: 780px;
+                        margin: 10px 0 0 0;
+                        padding-left: 20px;
+                        float: left;
+                        li{
+                            float: left;
+                            height: auto;
+                            margin-bottom: 8px;
+                            a{
+                                color: #666;
+                                margin-right: 15px;
+                                display: inline-block;
+                            }
+                        }
+                    }
                 }
             }
         }
