@@ -1,6 +1,16 @@
 "use strict";
 
 $(function () {
+	$.getJSON("http://datainfo.duapp.com/shopdata/getCar.php?callback=?", { userID: $.cookie("username") }, function (data) {
+		console.log(data);
+		var str = "";
+		$.each(data, function (index, item) {
+			str += "<tr>\n\t\t\t\t\t<td><input type=\"checkbox\"/></td>\n\t\t\t\t\t<td><img src=\"" + item.goodsListImg + "\"/>\n\t\t\t\t\t\t<p>" + item.goodsName + "</p>\n\t\t\t\t\t</td>\n\t\t\t\t\t<td>111</td>\n\t\t\t\t\t<td>" + item.price + "</td>\n\t\t\t\t\t<td>\n\t\t\t\t\t\t<div class=\"num_hid\">\n\t\t\t\t\t\t\t<a href=\"#\" class=\"addnum\"></a>\n\t\t\t\t\t\t\t<input type=\"text\" name=\"num_shop\" id=\"num_shop\" value=\"" + item.number + "\"/>\n\t\t\t\t\t\t\t<a href=\"#\" class=\"downnum\"></a>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</td>\n\t\t\t\t\t<td>111</td>\n\t\t\t\t\t<td><a href=\"#\">\u79FB\u9664</a></td>\n\t\t\t\t</tr>";
+		});
+		$(".shop_list").append(str);
+	});
+});
+$(function () {
 	$("#wrap_foot").load("footer.html");
 	var jsonzc = [{ "user": "aaaaa", "pass": "aaaaa" }, { "user": "bbbbb", "pass": "123123" }];
 	var regname = /^[a-z0-9_-]{3,16}$/;
@@ -153,14 +163,20 @@ $(function () {
 		$(".bottom_pic").html(str);
 		$(".min_pic").append("<img src=\"" + arrimg[0] + "\">");
 		$(".max_pic").append("<img src=\"" + arrimg[0] + "\">");
+		$(".bottom_pic>img").mouseover(function () {
+			$(".min_pic>img").attr("src", $(this).attr("src"));
+			$(".max_pic>img").attr("src", $(this).attr("src"));
+		});
 		$(".xx_right").html("<p class=\"pname\">" + data[0].goodsName + "</p><p class=\"pprice\">\uFFE5" + data[0].price + "</p>").append("<div class=\"xx_shop\">\n\t\t\t\t\t<span>\u8D2D\u4E70\u6570\u91CF</span>\n\t\t\t\t\t<div class=\"num_hid\">\n\t\t\t\t\t\t<a href=\"#\" class=\"addnum\"></a>\n\t\t\t\t\t\t<input type=\"text\" name=\"num_shop\" id=\"num_shop\" />\n\t\t\t\t\t\t<a href=\"#\" class=\"downnum\"></a>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"num_show\"></div>\n\t\t\t\t\t<a href=\"#\">\u52A0\u5165\u8D2D\u7269\u8F66</a>\n\t\t\t\t</div>");
 		$(".xx_shop>a").click(function () {
-			console.log("aaaa");
+			//	    	console.log(data[0].goodsID);
 			$.get("http://datainfo.duapp.com/shopdata/updatecar.php", { userID: $.cookie("username"), goodsID: data[0].goodsID }, function (data) {
 				if (data == 0) {
 					alert("添加失败！");
 				}
-				if (data == 1) {}
+				if (data == 1) {
+					location.href = "cart.html";
+				}
 			});
 		});
 	});
@@ -197,6 +213,7 @@ $(function () {
 		$(".max_pic>img")[0].style.left = -_left * 2 + "px";
 		$(".max_pic>img")[0].style.top = -_top * 2 + "px";
 	});
+	//购物车页面的js
 });
 ;(function () {
 	//	console.log("aaaa");
@@ -315,7 +332,7 @@ $(function () {
 				var $condiv = $("<ul class='detal_con'></ul>");
 				$.get("http://datainfo.duapp.com/shopdata/getclass.php", function (data) {
 					data = JSON.parse(data);
-					console.log(data);
+					//					console.log(data)
 					var str = "";
 					$.each(data, function (index, item) {
 						str += "<li><a href=\"list.html?classID=" + item.classID + "\">" + item.className + "<a></li>";
@@ -427,13 +444,21 @@ $(function () {
 });
 
 $(function () {
+	$.getJSON("http://datainfo.duapp.com/shopdata/getGoods.php?callback=?", function (data) {
+		//		console.log(data);
+		var str = "";
+		$.each(data, function (index, item) {
+			str += "<div>\n\t\t\t\t<a href=\"xiangxi.html?id=" + item.goodsID + "\">\n\t\t\t\t<img src=\"" + item.goodsListImg + "\">\n\t\t\t\t<p>" + item.goodsName + "</p>\n\t\t\t\t</a>\n\t\t\t\t</div>";
+		});
+		$(".listmore").append(str);
+	});
 	var classid = location.search.split("=")[1];
 	$.getJSON("http://datainfo.duapp.com/shopdata/getGoods.php?callback=?", { classID: classid }, function (data) {
 		//		data=JSON.parse(data);
 		var str = "";
 		$.each(data, function (index, item) {
-			str += "<div>\n\t\t\t\t\t<a href=\"xiangxi.html?id=" + item.goodsID + "\">\n\t\t\t\t\t<img src=\"" + item.goodsListImg + "\">\n\t\t\t\t\t<p>" + item.goodsName + "</p>\n\t\t\t\t\t<p>\uFFE5" + item.price + "</p>\n\t\t\t\t\t</a>\n\t\t\t\t\t</div>";
+			str += "<div>\n\t\t\t\t\t<a href=\"xiangxi.html?id=" + item.goodsID + "\">\n\t\t\t\t\t<img src=\"" + item.goodsListImg + "\">\n\t\t\t\t\t<p>" + item.goodsName + "</p>\n\t\t\t\t\t</a>\n\t\t\t\t\t</div>";
 		});
-		$(".listmore").html(str);
+		$(".listmore").prepend(str);
 	});
 });

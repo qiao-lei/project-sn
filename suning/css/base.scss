@@ -148,7 +148,10 @@ input,a{outline:none;}
         }
         .bottom_pic{
             position: absolute;
-            top: 300px;
+            top: 320px;
+            width: 300px;
+            height: 90px;
+            overflow: hidden;
             left: 0;
             >img{
                 display: inline-block;
@@ -189,45 +192,15 @@ input,a{outline:none;}
                 position: absolute;
                 top: 0;left: 0;
             }
-            .num_hid{
-                position: absolute;
-                top: 8px;
-                left: 90px;
-                width: 66px;
-                height: 18px;
-                overflow: hidden;
-                >a{
-                    float: left;
-                    width: 18px;
-                    height: 18px;
-                    background: url(../imgs/sidebar.png) no-repeat;
-                }
-                .downnum{
-                    background-position: -20px -190px;
-                }
-                .addnum{
-                    background-position: 0 -190px;
-                }
-                >input{
-                    float: left;
-                    width: 30px;
-                    height: 16px;
-                    border: 1px solid #ddd;
-                    border-left: 0;
-                    border-right: 0;
-                    line-height: 16px;
-                    text-align: center;
-                    
-                }
-            }
-            .num_show{
-                width: 66px;
-                height: 18px;
-                line-height: 18px;
-                text-align: center;
-                float: left;
-                
-            }
+            
+//          .num_show{
+//              width: 66px;
+//              height: 18px;
+//              line-height: 18px;
+//              text-align: center;
+//              float: left;
+//              
+//          }
             >a{
                 position: absolute;
                 background: #f60;
@@ -243,4 +216,104 @@ input,a{outline:none;}
             }
         }
     }
+}
+//shopcattr 购物车页面
+.shopcart{
+    width: 990px;
+    margin: 30px auto;
+    clear: both;
+    height: auto;
+    background: #fff;
+    table{
+       tbody{
+            tr{
+                height:32px;
+                color: #666;
+                border: 1px solid #ddd;
+                
+                th{
+                   
+                    text-align: left;
+                    height: 32px;
+                    line-height: 32px;
+                }
+                th:nth-of-type(1){
+                     width: 96px;
+                }
+                th:nth-of-type(2){
+                     width: 299px;
+                     
+                }
+                th:nth-of-type(3){
+                     width: 135px;
+                }
+                th:nth-of-type(4){
+                     width: 120px;
+                }
+                 th:nth-of-type(5){
+                     width: 95px;
+                }
+                th:nth-of-type(6),td:nth-of-type(6){
+                     width: 115px;
+                     padding-left: 30px;
+                }
+                th:nth-of-type(7){
+                     width: 70px;
+                }
+                td{
+                    height: 90px;
+                    padding: 10px;
+                    position: relative;
+                    img{
+                        position: absolute;
+                        top: 0;left: 0;
+                        width: 90px;
+                        height: 90px;
+                    }
+                    p{
+                        position: absolute;
+                        top: 0;
+                        left: 96px;
+                        font-size: 16px;
+                        line-height: 20px;
+                    }
+                    >input{
+                        margin-left: 20px;
+                    }
+                    .num_hid{
+                        position: absolute;
+                        top: 36px;
+                        left:0;
+                        width: 66px;
+                        height: 18px;
+                        overflow: hidden;
+                        >a{
+                            float: left;
+                            width: 18px;
+                            height: 18px;
+                            background: url(../imgs/sidebar.png) no-repeat;
+                        }
+                        .downnum{
+                            background-position: -20px -190px;
+                        }
+                        .addnum{
+                            background-position: 0 -190px;
+                        }
+                        >input{
+                            float: left;
+                            width: 30px;
+                            height: 16px;
+                            border: 1px solid #ddd;
+                            border-left: 0;
+                            border-right: 0;
+                            line-height: 16px;
+                            text-align: center;
+                            
+                        }
+                    }
+                }
+            }
+        } 
+    }
+    
 }

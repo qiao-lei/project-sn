@@ -115,7 +115,7 @@ $(function(){
 				var $condiv=$("<ul class='detal_con'></ul>");
 				$.get("http://datainfo.duapp.com/shopdata/getclass.php",function(data){
 					data=JSON.parse(data);
-					console.log(data)
+//					console.log(data)
 					var str="";
 					$.each(data, function(index,item) {
 						str+=`<li><a href="list.html?classID=${item.classID}">${item.className}<a></li>`;

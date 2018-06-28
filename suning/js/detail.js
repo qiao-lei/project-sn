@@ -16,6 +16,10 @@ $(function(){
 		$(".bottom_pic").html(str);
 		$(".min_pic").append(`<img src="${arrimg[0]}">`);
 		$(".max_pic").append(`<img src="${arrimg[0]}">`);
+		$(".bottom_pic>img").mouseover(function(){
+			$(".min_pic>img").attr("src",$(this).attr("src"));
+			$(".max_pic>img").attr("src",$(this).attr("src"));
+		});
 		$(".xx_right").html(`<p class="pname">${data[0].goodsName}</p><p class="pprice">￥${data[0].price}</p>`)
 		.append(`<div class="xx_shop">
 					<span>购买数量</span>
@@ -28,13 +32,13 @@ $(function(){
 					<a href="#">加入购物车</a>
 				</div>`);
 	    $(".xx_shop>a").click(function(){
-	    	console.log("aaaa");
+//	    	console.log(data[0].goodsID);
 	    	$.get("http://datainfo.duapp.com/shopdata/updatecar.php",{userID:$.cookie("username"),goodsID:data[0].goodsID},function(data){
 	    		if(data==0){
 	    			alert("添加失败！");
 	    		}
 	    		if(data==1){
-	    			
+	    			location.href="cart.html";
 	    		}
 	    	});
 	    });
@@ -72,4 +76,6 @@ $(function(){
 		$(".max_pic>img")[0].style.left=-_left*2+"px";
 		$(".max_pic>img")[0].style.top=-_top*2+"px";
 	});
+	//购物车页面的js
+	
 });

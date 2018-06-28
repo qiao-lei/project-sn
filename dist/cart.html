@@ -3,7 +3,268 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>购物车</title>
+		<link rel="stylesheet" type="text/css" href="../css/iconfont.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/base.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/index.css"/>
+		<script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+		<script src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+		<script src="js/snjs.min.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 	<body>
+		<!--头部-->
+		<div class="top_wrap">
+			<div class="top">
+				<div class="top_left">
+					<div >
+						<a href="index.html">返回首页</a>
+					</div>
+					<div class="hoverul">
+						<a href="javascript:void(0);" >
+							<span>网站导航</span>
+							<em class="iconfont icon-xiangxiajiantou"></em>
+						</a>
+						<ul id="top_web_list">
+							<li>
+								<h3>特色购物</h3>
+								<a href="#">苏宁互联</a><a href="#">苏宁互联</a>
+								<a href="#">苏宁大人</a><a href="#">苏宁互联</a>
+								<a href="#">苏宁大人</a><a href="#">苏宁互联</a>
+								<a href="#">苏宁大人</a><a href="#">苏宁互联</a>
+								<a href="#">苏宁大人</a><a href="#">苏宁大人</a>
+							</li>
+							<li>
+								<h3>特色购物</h3>
+								<a href="#">苏宁互联</a><a href="#">苏宁互联</a>
+								<a href="#">苏宁大人</a><a href="#">苏宁互联</a>
+								<a href="#">苏宁大人</a><a href="#">苏宁互联</a>
+							</li>
+							<li>
+								<h3>特色购物</h3>
+								<a href="#">苏宁互联</a><a href="#">苏宁互联</a>
+								<a href="#">苏宁大人</a><a href="#">苏宁互联</a>
+								<a href="#">苏宁大人</a><a href="#">苏宁互联</a>
+								<a href="#">苏宁大人</a><a href="#">苏宁互联</a>
+								<a href="#">苏宁大人</a><a href="#">苏宁大人</a>
+							</li>
+							<li>
+								<h3>特色购物</h3>
+								<a href="#">苏宁互联</a><a href="#">苏宁互联</a>
+								<a href="#">苏宁大人</a><a href="#">苏宁互联</a>
+								<a href="#">苏宁大人</a><a href="#">苏宁互联</a>
+							</li>
+							<li>
+								<h3>特色购物</h3>
+								<a href="#">苏宁互联</a><a href="#">苏宁互联</a>
+								<a href="#">苏宁大人</a><a href="#">苏宁互联</a>
+								<a href="#">苏宁大人</a><a href="#">苏宁互联</a>
+								<a href="#">苏宁大人</a><a href="#">苏宁互联</a>
+								<a href="#">苏宁大人</a><a href="#">苏宁大人</a>
+							</li>
+						</ul>
+					</div>
+					<div class="hoverul">
+						<a href="javascript:void(0);">
+							<span>商家入住</span>
+							<em class="iconfont icon-xiangxiajiantou"></em>
+						</a>
+						<div id="top_hezuo">
+							<a href="#">合作招商</a>
+							<a href="#">服务市场</a>
+							<a href="#">招商中心</a>
+							<a href="#">商家论坛</a>
+							<a href="#">合作招商</a>
+							<a href="#">服务市场</a>
+							<a href="#">招商中心</a>
+						</div>
+					</div>
+					<div class="hoverul">
+						<a href="javascript:void(0);">
+							<span>客户服务</span>
+							<em class="iconfont icon-xiangxiajiantou"></em>
+						</a>
+						<div id="top_kehu">
+							<a href="#">苏宁蚌壳</a>
+							<a href="#">帮助中心</a>
+							<a href="#">招商中心</a>
+							<a href="#">查抄门店</a>
+							<a href="#">退货保修</a>
+							<a href="#">服务市场</a>
+							<a href="#">客服中心</a>
+						</div>
+					</div>
+					<div class="top_city">
+						<a href="javascript:void(0);">
+							<i></i>
+							<span>郑州</span>
+							<b></b>
+						</a>
+					</div>
+				</div>
+				<div class="top_right">
+					<div>
+						<a href="denglu.html">请登录</a>
+					</div>
+					<div>
+						<a href="zhuce.html" style="color: #f60;">注册有礼</a>
+					</div>
+					<div class="hoverul">
+						<a href="javascript:void(0);">
+							<span>我的订单</span>
+							<em class="iconfont icon-xiangxiajiantou"></em>
+						</a>
+						<div id="top_my">
+							<a href="#">待支付</a>
+							<a href="#">待收货</a>
+							<a href="#">待评价</a>
+							<a href="#">修改订单</a>
+							
+						</div>
+					</div>
+					<div class="hoverul">
+						<a href="javascript:void(0);">
+							<span>我的易购</span>
+							<em class="iconfont icon-xiangxiajiantou"></em>
+						</a>
+						<div id="top_my_yigou">
+							<div class="tmy_shizi">
+								<a href="#">
+									<img src="imgs/shizi.jpg"/>
+								</a>
+							
+							<p class="shizi_right">
+								<a href="#">请登录</a>
+								<a href="#">点击打卡</a>
+							</p>
+							</div>
+							<a href="#">我的二手</a>
+							<a href="#">我的收藏</a>
+							<a href="#">我的金融</a>
+							<a href="#">苏宁会员</a>
+							<a href="#">我的任性付</a>
+							<a href="#">我的优惠券</a>
+							
+						</div>
+					</div>
+					<div>
+						<a href="#">苏宁会员</a>
+					</div>
+					<div class="hoverul">
+						<a href="javascript:void(0);">
+							<span>购物车</span>
+							<span id="shop_number" style="color: #f60;">
+								0
+							</span>
+							<em class="iconfont icon-xiangxiajiantou"></em>
+						</a>
+						<div id="top_shop">
+							
+						</div>
+					</div>
+					<div>
+						<a href="#">易付宝</a>
+					</div>
+					<div>
+						<a href="javascript:void(0);" >
+							<span>企业采购</span>
+						</a>
+					</div>
+					<div class="hoverul">
+						<a href="javascript:void(0);">
+							<span>手机苏宁</span>
+							<em class="iconfont icon-xiangxiajiantou"></em>
+						</a>
+						<ul id="top_phone">
+							<li>
+								<img src="imgs/sntk-top-code.png"/>
+								<p>扫一扫</p>
+								<p>下载苏宁金融APP</p>
+							</li>
+							<li>
+								<img src="imgs/yfb-top-code.png"/>
+								<p>扫一扫</p>
+								<p>下载苏宁金融APP</p>
+							</li>
+							<li>
+								<img src="imgs/sntk-top-code.png"/>
+								<p>扫一扫</p>
+								<p>下载苏宁金融APP</p>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="sousuo_wrap">
+			<div class="sousuo">
+				<div class="index_logo">
+					<a href="index.html">
+						<img src="imgs/logo.png"/>
+					</a>
+				</div>
+				<!--搜索框部分-->
+				<div class="sousuo_con">
+					<div class="sousuo_nei">
+						<form id="sososo" method="get">
+							<div>
+								<i class="iconfont icon-sousuo"></i>
+								<input type="text" name="soname" id="soname" />
+							</div>
+							<input type="button" name="sobtn" id="sobtn" value="搜索" />
+						</form>
+						<div class="soso_result">
+							<i class="iconfont icon-close"></i>
+							<ul class="result">
+								
+							</ul>
+						</div>
+						<!--<div class="hotso">
+							<a href="#">空调</a>
+							<a href="#">空调省800</a>
+							<a href="#">微单</a>
+							<a href="#">彩电直降千元</a>
+							<a href="#">最高减800元</a>
+							<a href="#">冰箱</a>
+							<a href="#">床垫</a>
+							<a href="#">爱他美</a>
+						</div>-->
+					</div>
+				</div>
+				<!--剩余部分-->
+				<div class="sousuo_right">
+					<img src="imgs/149391734040363425.png"/>
+				</div>
+			</div>
+		</div>
+	<!--导航-->
+	
+		<div class="shopcart">
+			<table>
+				<tbody class="shop_list">
+					<tr>
+						<th><input type="checkbox" id="checkall" name="checkall" />全选/不选</th>
+						<th>商品信息</th>
+						<th>规格</th>
+						<th>单价（元）</th>
+						<th>数量</th>
+						<th>小计（元）</th>
+						<th>操作</th>
+					</tr>
+					<!--<tr>
+						<td><input type="checkbox"/></td>
+						<td>111</td>
+						<td>111</td>
+						<td>111</td>
+						<td><div class="num_hid">
+							<a href="#" class="addnum"></a>
+							<input type="text" name="num_shop" id="num_shop" value="1"/>
+							<a href="#" class="downnum"></a>
+						</div></td>
+						<td>111</td>
+						<td><a href="#">移除</a></td>
+					</tr>-->
+				</tbody>
+			</table>
+		</div>
+		<div id="wrap_foot"></div>
 	</body>
 </html>
