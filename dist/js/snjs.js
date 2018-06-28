@@ -313,7 +313,15 @@ $(function () {
 	$(".ban_right").mouseleave(function () {
 		$(this).stop().animate({ width: $(".brimg1").outerWidth() }, 500);
 	});
-
+	$(window).scroll(function () {
+		if ($(this).scrollTop() >= 600) {
+			$(".header").show();
+			$(".floornav").show();
+		} else {
+			$(".header").hide();
+			$(".floornav").hide();
+		}
+	});
 	//	搜索框
 	$(".soso_result>i").click(function () {
 		$(this).parent().hide();
@@ -522,6 +530,14 @@ $(function () {
 		}
 		$(".hh_ul li:odd").css("border-right", "none");
 	})();
+	$(".floornav a").click(function () {
+		var index = $(this).index() + 6;
+		$(this).addClass("hover").siblings().removeClass("hover");
+		$("html,body").animate({ "scrollTop": $("body>div").eq(index).offset().top }, 500);
+	});
+	$(".floornav div").click(function () {
+		$("html,body").animate({ "scrollTop": 0 }, 500);
+	});
 });
 
 $(function () {
