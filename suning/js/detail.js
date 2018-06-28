@@ -22,12 +22,7 @@ $(function(){
 		});
 		$(".xx_right").html(`<p class="pname">${data[0].goodsName}</p><p class="pprice">￥${data[0].price}</p>`)
 		.append(`<div class="xx_shop">
-					<span>购买数量</span>
-					<div class="num_hid">
-						<a href="#" class="addnum"></a>
-						<input type="text" name="num_shop" id="num_shop" />
-						<a href="#" class="downnum"></a>
-					</div>
+					
 					<div class="num_show"></div>
 					<a href="#">加入购物车</a>
 				</div>`);

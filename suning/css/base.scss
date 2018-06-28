@@ -276,6 +276,9 @@ input,a{outline:none;}
                         left: 96px;
                         font-size: 16px;
                         line-height: 20px;
+                       a:hover{
+                           color: #f60;
+                       }
                     }
                     >input{
                         margin-left: 20px;
@@ -315,5 +318,29 @@ input,a{outline:none;}
             }
         } 
     }
-    
+   .shop_pay{
+       background: #eee;
+       p{
+          
+           font-size: 16px;
+           font-weight: bold;
+           height: 24px;
+           margin: 10px;
+           line-height: 24px;
+           text-align: right;
+           a{
+               display: block;
+               height: 24px;
+               float: right;
+               width: 100px;
+               text-align: center;
+               line-height: 24px;
+               background: #f60;
+               color:#fff;
+               font-size: 16px;
+               font-weight: bold;
+           }
+       }
+       
+   }
 }

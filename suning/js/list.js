@@ -13,7 +13,7 @@ $(function(){
 		$(".listmore").append(str);
 	});
 	var classid=location.search.split("=")[1];
-	$.getJSON("http://datainfo.duapp.com/shopdata/getGoods.php?callback=?",{classID:classid},function(data){
+	$.getJSON("http://datainfo.duapp.com/shopdata/getGoods.php?callback=?",{classID:classid,goodsID:classid},function(data){
 //		data=JSON.parse(data);
 		var str="";
 		$.each(data, function(index,item) {

@@ -1,13 +1,93 @@
 "use strict";
 
 $(function () {
+
 	$.getJSON("http://datainfo.duapp.com/shopdata/getCar.php?callback=?", { userID: $.cookie("username") }, function (data) {
-		console.log(data);
+		//		console.log(data);
 		var str = "";
 		$.each(data, function (index, item) {
-			str += "<tr>\n\t\t\t\t\t<td><input type=\"checkbox\"/></td>\n\t\t\t\t\t<td><img src=\"" + item.goodsListImg + "\"/>\n\t\t\t\t\t\t<p>" + item.goodsName + "</p>\n\t\t\t\t\t</td>\n\t\t\t\t\t<td>111</td>\n\t\t\t\t\t<td>" + item.price + "</td>\n\t\t\t\t\t<td>\n\t\t\t\t\t\t<div class=\"num_hid\">\n\t\t\t\t\t\t\t<a href=\"#\" class=\"addnum\"></a>\n\t\t\t\t\t\t\t<input type=\"text\" name=\"num_shop\" id=\"num_shop\" value=\"" + item.number + "\"/>\n\t\t\t\t\t\t\t<a href=\"#\" class=\"downnum\"></a>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</td>\n\t\t\t\t\t<td>111</td>\n\t\t\t\t\t<td><a href=\"#\">\u79FB\u9664</a></td>\n\t\t\t\t</tr>";
+			var price = item.price * item.number;
+
+			str += "<tr data-id=\"" + item.goodsID + "\">\n\t\t\t\t\t<td><input class=\"checkbox_c\" type=\"checkbox\"/></td>\n\t\t\t\t\t<td><img src=\"" + item.goodsListImg + "\"/>\n\t\t\t\t\t\t<p><a href=\"xiangxi.html?id=" + item.goodsID + "\">" + item.goodsName + "</a></p>\n\t\t\t\t\t</td>\n\t\t\t\t\t<td>111</td>\n\t\t\t\t\t<td><span class=\"d_price\">" + item.price + "</span></td>\n\t\t\t\t\t<td>\n\t\t\t\t\t\t<div class=\"num_hid\">\n\t\t\t\t\t\t\t<a href=\"javascript:void(0)\" class=\"addnum\"></a>\n\t\t\t\t\t\t\t<input type=\"text\" class=\"num_shop\" value=\"" + item.number + "\" disabled=\"disabled\"/>\n\t\t\t\t\t\t\t<a href=\"javascript:void(0)\" class=\"downnum\"></a>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</td>\n\t\t\t\t\t<td><span class=\"p_price\">" + price + "</span></td>\n\t\t\t\t\t<td><a href=\"javascript:void(0)\" class=\"delete_shop\">\u79FB\u9664</a></td>\n\t\t\t\t</tr>";
 		});
 		$(".shop_list").append(str);
+		$("input[type='checkbox']").prop("checked", true);
+		function isDigit() {
+			var summ = 0;
+			var zprice = 0;
+			$(".checkbox_c:checked").each(function () {
+				summ += parseInt($(".num_shop").eq($(this).index(".checkbox_c")).val());
+				zprice += parseFloat($(".p_price").eq($(this).index(".checkbox_c")).text());
+			});
+			$(".num_all").text(summ);
+			$(".price_all").text(zprice);
+		}
+		isDigit();
+		$("#checkall").click(function () {
+			$(".checkbox_c").prop("checked", $(this).prop("checked"));
+			isDigit();
+		});
+		$(".checkbox_c").click(function () {
+			if ($(".checkbox_c:checked").length == $(".checkbox_c").length) {
+				$("#checkall").prop("checked", true);
+			} else {
+				$("#checkall").prop("checked", false);
+			}
+			isDigit();
+		});
+		//		数量加
+		$(".downnum").click(function () {
+			var dprice = $(".d_price").eq($(this).index(".downnum")).text();
+			var numadd = $(this).prev().val();
+			numadd++;
+			$(this).prev().val(numadd);
+			$(".p_price").eq($(this).index(".downnum")).text(parseFloat(dprice) * numadd);
+			//			console.log($(this).prev().val());
+			isDigit();
+			//			console.log($(this).parents("tr").attr("data-id"));
+		});
+		//		数量减
+		$(".addnum").click(function () {
+			var dprice = $(".d_price").eq($(this).index(".addnum")).text();
+			var numdown = $(this).next().val();
+			numdown--;
+			if (numdown <= 0) {
+				numdown = 0;
+			}
+			$(this).next().val(numdown);
+			$(".p_price").eq($(this).index(".addnum")).text(parseFloat(dprice) * numdown);
+			isDigit();
+		});
+		//		删除数据
+		$(".delete_shop").click(function () {
+			$(this).parent().parent().remove();
+			var goodsid = $(this).parent().parent().attr("data-id");
+			//			console.log($(this).parent().parent().attr("data-id"));
+			isDigit();
+			$.get("http://datainfo.duapp.com/shopdata/updatecar.php", { userID: $.cookie("username"), goodsID: goodsid, number: 0 }, function (data) {
+				if (data == 1) {}
+				if (data == 0) {
+					location.reload();
+				}
+			});
+		});
+		//		付款
+		$(".pay_pay").click(function () {
+			$(".checkbox_c").each(function () {
+				var goodsid = $(this).parent().parent().attr("data-id");
+				var num = $(this).parent().parent().find(".num_shop").val();
+				//				console.log($(this).parent().parent().attr("data-id"));
+				//				console.log($(this).parent().parent().find(".num_shop").val());
+				$.get("http://datainfo.duapp.com/shopdata/updatecar.php", { userID: $.cookie("username"), goodsID: goodsid, number: num }, function (data) {
+					if (data == 1) {
+						alert("钱已付，坐等收货啦啦啦啦！");
+					}
+					if (data == 0) {
+						alert("付款失败！");
+					}
+				});
+			});
+		});
 	});
 });
 $(function () {
@@ -167,7 +247,7 @@ $(function () {
 			$(".min_pic>img").attr("src", $(this).attr("src"));
 			$(".max_pic>img").attr("src", $(this).attr("src"));
 		});
-		$(".xx_right").html("<p class=\"pname\">" + data[0].goodsName + "</p><p class=\"pprice\">\uFFE5" + data[0].price + "</p>").append("<div class=\"xx_shop\">\n\t\t\t\t\t<span>\u8D2D\u4E70\u6570\u91CF</span>\n\t\t\t\t\t<div class=\"num_hid\">\n\t\t\t\t\t\t<a href=\"#\" class=\"addnum\"></a>\n\t\t\t\t\t\t<input type=\"text\" name=\"num_shop\" id=\"num_shop\" />\n\t\t\t\t\t\t<a href=\"#\" class=\"downnum\"></a>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"num_show\"></div>\n\t\t\t\t\t<a href=\"#\">\u52A0\u5165\u8D2D\u7269\u8F66</a>\n\t\t\t\t</div>");
+		$(".xx_right").html("<p class=\"pname\">" + data[0].goodsName + "</p><p class=\"pprice\">\uFFE5" + data[0].price + "</p>").append("<div class=\"xx_shop\">\n\t\t\t\t\t\n\t\t\t\t\t<div class=\"num_show\"></div>\n\t\t\t\t\t<a href=\"#\">\u52A0\u5165\u8D2D\u7269\u8F66</a>\n\t\t\t\t</div>");
 		$(".xx_shop>a").click(function () {
 			//	    	console.log(data[0].goodsID);
 			$.get("http://datainfo.duapp.com/shopdata/updatecar.php", { userID: $.cookie("username"), goodsID: data[0].goodsID }, function (data) {
@@ -219,6 +299,7 @@ $(function () {
 	//	console.log("aaaa");
 })();
 $(function () {
+	$(".log_dl").text($.cookie("username"));
 	$("#wrap_foot").load("footer.html");
 	$(".hoverul").mouseover(function () {
 		$(this).children().eq(1).show();
@@ -453,7 +534,7 @@ $(function () {
 		$(".listmore").append(str);
 	});
 	var classid = location.search.split("=")[1];
-	$.getJSON("http://datainfo.duapp.com/shopdata/getGoods.php?callback=?", { classID: classid }, function (data) {
+	$.getJSON("http://datainfo.duapp.com/shopdata/getGoods.php?callback=?", { classID: classid, goodsID: classid }, function (data) {
 		//		data=JSON.parse(data);
 		var str = "";
 		$.each(data, function (index, item) {

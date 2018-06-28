@@ -2,6 +2,7 @@
 //	console.log("aaaa");
 })();
 $(function(){
+	$(".log_dl").text($.cookie("username"));
 	$("#wrap_foot").load("footer.html");
 	$(".hoverul").mouseover(function(){
 		$(this).children().eq(1).show();
